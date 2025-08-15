@@ -12,8 +12,8 @@ interface INoteRepository
     public function all(): array;
 
     /* @retrun create Note */
-    public function create(string $title, string $body): Note;
+    public function create(Note $note): Note;
 
-    /* @return actual Note[] after remove */
+    /* @return bool after remove */
     public  function delete(int $id): bool;
 }

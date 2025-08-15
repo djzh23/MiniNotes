@@ -41,13 +41,6 @@ final class NotesController extends Controller
 
     public function delete(Request $req, Response $res): Response
     {
-        // $id = $req->post['id'] ?? 0;
-        // if ($id === '') {
-        //     return $res->redirect('/notes');
-        // }
-        // $this->service->delete(($id));
-        // return $res->redirect('/notes');
-
 
         $id = (int)($req->post['id'] ?? 0);
         if ($id <= 0) {

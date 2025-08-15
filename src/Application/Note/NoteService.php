@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Note;
 
 use App\Domain\Note\Contracts\INoteRepository;
+use App\Domain\Note\Note;
 
 final class NoteService
 {
@@ -18,7 +19,8 @@ final class NoteService
 
     public function create(string $title, string $body): NoteDto
     {
-        $note = $this->repo->create($title, $body);
+        $n = new Note(null, $title, $body);
+        $note = $this->repo->create($n);
         return new NoteDto($note->id, $note->title);
     }
 

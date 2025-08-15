@@ -9,6 +9,7 @@ use App\Core\{Request, Response, Router};
 use App\Http\Controller\HealthController;
 use App\Http\Controller\HomeController;
 use App\Http\Controller\NotesController;
+use App\Infrastructure\Note\CsvNoteRepository;
 use App\Infrastructure\Note\InMemoryNoteRepository;
 
 final class HttpKernel
@@ -20,8 +21,9 @@ final class HttpKernel
     {
         $router = new Router();
         $res = new Response();
-        $noteRepository = new InMemoryNoteRepository();
-        $noteService = new NoteService($noteRepository);
+        $noteRepository_IN_MEMORY = new InMemoryNoteRepository();
+        $noteRepository_CSV = new CsvNoteRepository(__DIR__ . '/../Storage/notes.csv');
+        $noteService = new NoteService($noteRepository_IN_MEMORY);
         // Routen registrieren ( mit add und dispatch) ohne Controller
 
         // $router->add('GET', '/health', fn(Request $r, Response $res) => $res->html('OK', 200));

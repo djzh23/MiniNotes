@@ -26,25 +26,15 @@ final class InMemoryNoteRepository implements INoteRepository
     }
 
 
-    public function create(string $title, string $body): Note
+    public function create(Note $note): Note
     {
-        $note =  new Note($_SESSION['notes_next_id']++, $title, $body);
+        $note =  new Note($_SESSION['notes_next_id']++, $note->getTitle(), $note->getBody());
         $_SESSION['notes'][] = $note;
         return $note;
     }
 
     public function delete(int $id): bool
     {
-
-        // bool $r=false; 
-        // if ($id === 0) return false;
-        // else {
-
-        //     $_SESSION['notes'] = array_values(
-        //         array_filter($_SESSION['notes'], fn($n) => $n->id !== $id)
-        //     );
-        //     return false;
-        // }
 
         $before = count($_SESSION['notes']);
         $_SESSION['notes'] = array_values(array_filter($_SESSION['notes'], fn($n) => $n->id !== $id));
