@@ -7,6 +7,7 @@ namespace App\Core;
 final class Router
 {
     private array $map = []; // METHOD => [ PATH => callable]
+    private $notFound = null;
 
     public function add(string $method, string $path, callable $handler): void
     {
@@ -18,6 +19,11 @@ final class Router
     {
         // Handler nachschlagen. Falls keiner -> 404
         $handler = $this->map[$req->method][$req->path] ?? null;
-        return $handler ? $handler($req, $res) : $res->html('Not Found', 404);
+        return $handler ? $handler($req, $res) : ($this->notFound ? ($this->notFound)($req, $res) : $res->html('Not Found', 404));
+    }
+
+    public function setNotFound(callable $handler): void
+    {
+        $this->notFound = $handler;
     }
 }

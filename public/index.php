@@ -7,6 +7,7 @@ ini_set('display_errors', $env === 'dev' ? '1' : '0');
 session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
+header('Content-Type: text/html; charset=UTF-8');
 
 //  HttpKernel + Router 
 $r = \App\Core\Request::fromGlobals();
