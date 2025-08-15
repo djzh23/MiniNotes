@@ -18,6 +18,6 @@ final class Router
     {
         // Handler nachschlagen. Falls keiner -> 404
         $handler = $this->map[$req->method][$req->path] ?? null;
-        return $handler ? $handler($req, $req) : $res->html('Not Found', 404);
+        return $handler ? $handler($req, $res) : $res->html('Not Found', 404);
     }
 }
