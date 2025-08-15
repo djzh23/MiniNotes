@@ -9,8 +9,45 @@ use App\Domain\Note\Contracts\INoteRepository;
 
 final class InMemoryNoteRepository implements INoteRepository
 {
+
+    private int $nextId = 3;
+
+    //public array $listOfNotes  =  [new Note(1, 'First Note', 'note note note note')];
+
+    // Konstruktor: Session-Start und kommt im Front Controller!
+    public function __construct()
+    {
+        $_SESSION['notes'] ??= [new Note(1, 'First Note', '...'), new Note(2, 'Second Note', '...')];
+        $_SESSION['notes_next_id'] ??= 3;
+    }
     public function all(): array
     {
-        return [new Note(1, 'First Note', 'note note note note')];
+        return $_SESSION['notes'];
+    }
+
+
+    public function create(string $title, string $body): Note
+    {
+        $note =  new Note($_SESSION['notes_next_id']++, $title, $body);
+        $_SESSION['notes'][] = $note;
+        return $note;
+    }
+
+    public function delete(int $id): bool
+    {
+
+        // bool $r=false; 
+        // if ($id === 0) return false;
+        // else {
+
+        //     $_SESSION['notes'] = array_values(
+        //         array_filter($_SESSION['notes'], fn($n) => $n->id !== $id)
+        //     );
+        //     return false;
+        // }
+
+        $before = count($_SESSION['notes']);
+        $_SESSION['notes'] = array_values(array_filter($_SESSION['notes'], fn($n) => $n->id !== $id));
+        return count($_SESSION['notes']) < $before;
     }
 }

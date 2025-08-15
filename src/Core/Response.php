@@ -22,6 +22,8 @@ final class Response
         header('Location: ' . $to, true, 302);
         $this->code = 302;
         $this->body = '';
-        return $this;
+        exit; // beendet das Script sofort (gilt für InMemoryRepo (session))
+        // $this->body = '';
+        // return $this;
     }
 }

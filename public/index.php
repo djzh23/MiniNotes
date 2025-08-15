@@ -4,9 +4,10 @@ declare(strict_types=1);
 $env = getenv('APP_ENV') ?: 'dev'; // dev | prod
 error_reporting(E_ALL);
 ini_set('display_errors', $env === 'dev' ? '1' : '0');
-session_start();
+
 require __DIR__ . '/../vendor/autoload.php';
 
+session_start();
 header('Content-Type: text/html; charset=UTF-8');
 
 //  HttpKernel + Router 
