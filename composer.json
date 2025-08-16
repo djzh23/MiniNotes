@@ -6,12 +6,19 @@
             "App\\": "src/"
         }
     },
+    "autoload-dev": { 
+        "psr-4": { 
+            "Tests\\": "tests/" 
+            } 
+        },
+        "scripts": { "test": "phpunit --colors=always" },
     "authors": [
         {
             "name": "Zouh ij"
         }
     ],
     "require-dev": {
-        "symfony/var-dumper": "^7.3"
+        "symfony/var-dumper": "^7.3",
+        "phpunit/phpunit": "11"
     }
 }
