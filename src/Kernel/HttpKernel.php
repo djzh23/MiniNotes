@@ -11,6 +11,7 @@ use App\Http\Controller\HomeController;
 use App\Http\Controller\NotesController;
 use App\Infrastructure\Note\CsvNoteRepository;
 use App\Infrastructure\Note\InMemoryNoteRepository;
+use PdoNoteRepository;
 
 final class HttpKernel
 {
@@ -23,6 +24,7 @@ final class HttpKernel
         $res = new Response();
         $noteRepository_IN_MEMORY = new InMemoryNoteRepository();
         $noteRepository_CSV = new CsvNoteRepository(__DIR__ . '/../Storage/notes.csv');
+        // $pdoNoteRepository_DB = new PdoNoteRepository();
         $noteService = new NoteService($noteRepository_CSV);
 
 
