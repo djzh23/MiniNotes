@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Infrastructure\Note\PdoNoteRepository;
 use PHPUnit\Framework\TestCase;
 
 final class PdoNoteRepositoryTest extends TestCase

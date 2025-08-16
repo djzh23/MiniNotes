@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
+namespace App\Infrastructure\Note;
+
 use App\Domain\Note\Contracts\INoteRepository;
 use App\Domain\Note\Note;
+use LogicException;
+use PDO;
 
 final class PdoNoteRepository implements INoteRepository
 {
