@@ -23,7 +23,9 @@ final class HttpKernel
         $res = new Response();
         $noteRepository_IN_MEMORY = new InMemoryNoteRepository();
         $noteRepository_CSV = new CsvNoteRepository(__DIR__ . '/../Storage/notes.csv');
-        $noteService = new NoteService($noteRepository_IN_MEMORY);
+        $noteService = new NoteService($noteRepository_CSV);
+
+
         // Routen registrieren ( mit add und dispatch) ohne Controller
 
         // $router->add('GET', '/health', fn(Request $r, Response $res) => $res->html('OK', 200));
