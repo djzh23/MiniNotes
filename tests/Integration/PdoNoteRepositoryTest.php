@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Infrastructure\Note\PdoNoteRepository;
+
 use PHPUnit\Framework\TestCase;
 
 final class PdoNoteRepositoryTest extends TestCase
@@ -14,7 +15,7 @@ final class PdoNoteRepositoryTest extends TestCase
     {
         $this->pdo = new PDO('sqlite::memory:');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo->exec('CREATE TABLE notes (id INTEGER PRIMARYKEY AUTOINCREMENT, title TEXT NOT NULL, body TEXT NOT NULL)');
+        $this->pdo->exec('CREATE TABLE notes (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, body TEXT NOT NULL)');
     }
 
     public function test_all_empty_returns_empty_array(): void
@@ -22,10 +23,10 @@ final class PdoNoteRepositoryTest extends TestCase
         // Arrange
         $repo = new PdoNoteRepository($this->pdo, 'notes');
 
-        //Act
+        // Act
         $result = $repo->all();
 
-        // ASSERT
+        // Assert
         $this->assertSame([], $result);
     }
 }

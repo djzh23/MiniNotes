@@ -15,7 +15,10 @@ final class PdoNoteRepository implements INoteRepository
 
     public function all(): array
     {
-        throw new LogicException('NI');
+        // throw new LogicException('NI');
+        $sql  = "SELECT id, title, body FROM {$this->table} ORDER BY id";
+        $rows = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($r) => new Note((int)$r['id'], (string)$r['title'], (string)$r['body']), $rows);
     }
 
     public function create(Note $note): Note
