@@ -20,16 +20,11 @@ final class CsvNoteRepository implements INoteRepository
 
     public function create(Note $note): Note
     {
-        // look first if notes.csv is already created, if not create one  
         $rows = $this->readRows();
         $nextId = empty($rows) ? 1 : max(array_map(fn($r) => (int)$r[0], $rows)) + 1;
         $rows[] = [$nextId, $note->getTitle(), $note->getBody()];
         $this->writeRows($rows);
         return new Note($nextId, $note->getTitle(), $note->getBody());
-
-        // then reading()
-        // then writing
-        // otherwise direkt wirting
     }
 
     public function delete(int $id): bool

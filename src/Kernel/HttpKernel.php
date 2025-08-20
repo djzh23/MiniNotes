@@ -21,6 +21,8 @@ final class HttpKernel
     {
         $router = new Router();
         $res = new Response();
+
+
         $noteRepository_IN_MEMORY = new InMemoryNoteRepository();
         $noteRepository_CSV = new CsvNoteRepository(__DIR__ . '/../Storage/notes.csv');
         // $pdoNoteRepository_DB = new PdoNoteRepository();
@@ -30,7 +32,7 @@ final class HttpKernel
         // Routen registrieren ( mit add und dispatch) ohne Controller
 
         // $router->add('GET', '/health', fn(Request $r, Response $res) => $res->html('OK', 200));
-        // $router->add('GET', '/', fn(\App\Core\Request $r, \App\Core\Response $res) => $res->html('<h1>MiniNotes</h1>', 200));
+        // $router->add('GET', '/', fn(Request $r, Response $res) => $res->html('<h1>MiniNotes</h1>', 200));
 
 
         // Routen registrieren ( mit add und dispatch) mit Controller
@@ -43,6 +45,7 @@ final class HttpKernel
         $router->add('POST', '/notes', [new NotesController($noteService), 'store']);
         $router->add('GET', '/notes/create', [new NotesController($noteService), 'createForm']);
         $router->add('POST', '/notes/delete', [new NotesController($noteService), 'delete']);
+
         return $router->dispatch($req, $res);
     }
 }

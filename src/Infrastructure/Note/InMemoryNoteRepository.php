@@ -10,11 +10,7 @@ use App\Domain\Note\Contracts\INoteRepository;
 final class InMemoryNoteRepository implements INoteRepository
 {
 
-    private int $nextId = 3;
-
-    //public array $listOfNotes  =  [new Note(1, 'First Note', 'note note note note')];
-
-    // Konstruktor: Session-Start und kommt im Front Controller!
+    // Konstruktor: Session-Start und kommt im Front Controller
     public function __construct()
     {
         $_SESSION['notes'] ??= [new Note(1, 'First Note', '...'), new Note(2, 'Second Note', '...')];

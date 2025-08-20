@@ -11,12 +11,7 @@
                     <button class="btn danger" onclick="return confirm('Delete?')">Delete</button>
                 </form>
             </li>
-            <!-- <div>
-                <li><?= htmlspecialchars($n->title, ENT_QUOTES, 'UTF-8') ?></li>
-                <div class="actions">
-                    <a class="btn" href="/notes/delete">Remove</a>
-                </div>
-            </div> -->
+
         <?php endforeach; ?>
     </ul>
 </main>
