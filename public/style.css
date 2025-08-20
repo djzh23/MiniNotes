@@ -1,0 +1,16 @@
+body{font-family:system-ui,Arial,sans-serif;margin:2rem}
+h1{margin:0 0 1rem}
+ul{padding-left:1.2rem}
+.container{max-width:720px;margin:auto}
+.btn{display:inline-block;padding:.5rem .8rem;border:1px solid #333;text-decoration:none}
+.mt1{margin-top:1rem}
+
+.form{max-width:520px}
+.field{margin:.75rem 0}
+.field label{display:block;font-weight:600;margin-bottom:.25rem}
+.field input,.field textarea{width:100%;padding:.5rem;border:1px solid #ccc;border-radius:6px}
+.actions{margin-top:1rem;display:flex;gap:.5rem}
+.btn.primary{background:#111;color:#fff;border-color:#111}
+
+.btn.danger{border-color:#b00020;color:#b00020}
+.btn.danger:hover{background:#b00020;color:#fff}
